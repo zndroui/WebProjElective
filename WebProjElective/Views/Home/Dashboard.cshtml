@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grocery Store</title>
+    <title>ElectroMart</title>
     <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,7 +14,8 @@
 <body>
     <header class="header">
         <a href="#" class="logo">
-            <img src="~/images/grocerylogo.png" alt=""> Hehehe</a>
+            <img src="~/images/grocerylogo.png" alt=""> ElectroMart
+        </a>
         <nav class="navbar">
             <a href="#home">Home</a>
             <a href="#features">Features</a>
@@ -54,7 +55,7 @@
                     </div>
                 }
 
-                <div class="total">total : Php @Model.Sum(cart => cart.ProdPrice)</div>
+                <div class="total">total : AUD @Model.Sum(cart => cart.ProdPrice)</div>
                 <form action="/Home/CheckoutForm">
                     <button type="submit" class="btn">Checkout</button>
                 </form>
@@ -94,7 +95,7 @@
             <p>Welcome to your dashboard, <span>@User.Identity.Name!</span></p>
             <h3>Enjoy shopping with us!</h3>
             <p>Your favorite products are just a click away.</p>
-            <a href="/Home/StoreProductForm?category=Sensors" class="btn">SHOP NA</a>
+            <a href="/Home/StoreProductForm?category=Sensors" class="btn">SHOP NOW</a>
         </div>
     </section>
 

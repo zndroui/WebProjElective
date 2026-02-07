@@ -21,9 +21,9 @@ namespace WebProjElective.Models
                 _mySqlConnection.Open();
                 MySqlCommand command = new MySqlCommand(
                     @"INSERT INTO users (username, password, email, fname, lname,
-                              staddress, city, province, pnumber, gender, bdate, accttype)
-                      VALUES(@uname, @pass, @mail, @fname, @lname, @staddress, @city, @province,
-                             @pnumber, @gender, @bdate, @accttype)", _mySqlConnection);
+                      staddress, city, province, pnumber, gender, bdate, accttype)
+              VALUES(@uname, @pass, @mail, @fname, @lname, @staddress, @city, @province,
+                     @pnumber, @gender, @bdate, @accttype)", _mySqlConnection);
                 command.Parameters.AddWithValue("@uname", user.UserName);
                 command.Parameters.AddWithValue("@pass", user.Password);
                 command.Parameters.AddWithValue("@mail", user.Email);
@@ -170,7 +170,7 @@ namespace WebProjElective.Models
                             StAddress = reader.GetString("staddress"),
                             City = reader.GetString("city"),
                             Province = reader.GetString("province"),
-                            PNumber = reader.GetInt32("pnumber"),
+                            PNumber = reader.GetString("pnumber"),
                             FName = reader.GetString("fname"),
                             LName = reader.GetString("lname")
                         };
@@ -260,7 +260,7 @@ namespace WebProjElective.Models
                             StAddress = reader.GetString("staddress"),
                             City = reader.GetString("city"),
                             Province = reader.GetString("province"),
-                            PNumber = reader.GetInt32("pnumber"),
+                            PNumber = reader.GetString("pnumber"),
                             FName = reader.GetString("fname"),
                             LName = reader.GetString("lname"),
                             BDate = reader.GetDateTime("bdate")
@@ -279,6 +279,43 @@ namespace WebProjElective.Models
 
             return user;
         }
+
+        public bool UpdateShippingAddress(string username,
+                                  string stAddress,
+                                  string city,
+                                  string province)
+        {
+            try
+            {
+                _mySqlConnection.Open();
+
+                MySqlCommand command = new MySqlCommand(
+                    @"UPDATE users 
+              SET staddress = @st,
+                  city = @city,
+                  province = @prov
+              WHERE username = @un",
+                    _mySqlConnection);
+
+                command.Parameters.AddWithValue("@st", stAddress);
+                command.Parameters.AddWithValue("@city", city);
+                command.Parameters.AddWithValue("@prov", province);
+                command.Parameters.AddWithValue("@un", username);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating shipping address: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                _mySqlConnection.Close();
+            }
+        }
+
 
 
 

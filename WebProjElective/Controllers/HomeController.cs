@@ -308,5 +308,52 @@ namespace WebProjElective.Controllers
             return View();
         }
 
+        // ================================
+        // UPDATE SHIPPING ADDRESS (GET)
+        // ================================
+        [HttpGet]
+        public IActionResult UpdateShipping()
+        {
+            var username = User.Identity.Name;
+
+            var user = _userContext.GetUserByUsername(username);
+            var cartItems = _cartContext.GetCartItemsByUsername(username);
+
+            var model = new UserCart
+            {
+                User = user,
+                Carts = cartItems
+            };
+
+            return View(model);
+        }
+
+
+        // ================================
+        // UPDATE SHIPPING ADDRESS (POST)
+        // ================================
+        [HttpPost]
+        public IActionResult UpdateShipping(string UserName,
+                                           string StAddress,
+                                           string City,
+                                           string Province)
+        {
+            bool success = _userContext.UpdateShippingAddress(
+                UserName, StAddress, City, Province
+            );
+
+            if (success)
+            {
+                TempData["SuccessMessage"] = "Shipping address updated successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to update shipping address.";
+            }
+
+            return RedirectToAction("CheckoutForm");
+        }
+
+
     }
 }

@@ -5,7 +5,7 @@
 }
 @* <link rel="stylesheet" href="~/css/admindes.css"> *@
 <header>
-    <h2>ADMIN PANEL ||| Orders</h2>
+    <h2>ADMIN PANEL ||| Placed Orders</h2>
     <div class="logout-icon">
         <img src="~/images/back-icon.png" alt="Logout">
     </div>
@@ -21,7 +21,6 @@
                 <th>Date Order Placed</th>
                 <th>Shipping Name</th>
                 <th>Payment Method</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -34,12 +33,6 @@
                     <td>@po.DatePlaced</td>
                     <td>@po.Shipping</td>
                     <td>@po.PayMethod</td>
-                    <td>
-                        <form method="post" action="@Url.Action("DeleteOrder", "Admin", new { id = po.PlacedId})" onsubmit="return confirm('Sure ka na e delete na nimo ni?');">
-                            <button type="submit" class="btn btn-danger">DELETE</button>
-                        </form>
-                    </td>
-
                 </tr>
             }
         </tbody>

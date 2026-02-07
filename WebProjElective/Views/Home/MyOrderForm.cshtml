@@ -55,7 +55,7 @@
 <body>
     <header class="header">
         <a href="#" class="logo">
-            <img src="~/images/grocerylogo.png" alt=""> Hehehe
+            <img src="~/images/grocerylogo.png" alt=""> ElectroMart
         </a>
         <nav class="navbar">
             <a href="#home">Home</a>
@@ -96,7 +96,7 @@
                     </div>
                 }
 
-                <div class="total">total : Php @Model.Sum(cart => cart.ProdPrice)</div>
+                <div class="total">total : AUD @Model.Sum(cart => cart.ProdPrice)</div>
                 <form action="/Home/CheckoutForm">
                     <button type="submit" class="btn">Checkout</button>
                 </form>
